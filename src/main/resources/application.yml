@@ -1,0 +1,71 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8769
+ # context-path: /minn-zuul
+spring:
+  application:
+    name: minn-zuul
+  redis:
+    host: localhost
+    password: 
+    port: 6379
+    database: 0
+    timeout: 0
+  session:
+    store-type: redis
+zuul:
+  sensitiveHeaders:
+  add-host-header: true
+  routes:
+    bund:
+      path: /*.js
+      url: http://go.back.com:8089
+    css: 
+      path: /css/**
+      url: http://go.back.com:8089/css
+    js: 
+      path: /js/**
+      url: http://go.back.com:8089/js
+    assets: 
+      path: /assets/**
+      url: http://go.back.com:8089/assets
+    fonts: 
+      path: /fonts/**
+      url: http://go.back.com:8089/fonts
+    locale: 
+      path: /locale/**
+      url: http://go.back.com:8089/locale
+    ui:
+      path: /
+      url: http://go.back.com:8089
+    auth:
+      path: /auth/**
+      serviceId: auth
+      stripPrefix: false
+      sensitiveHeaders: 
+    adminapp:
+      path: /admin/**
+      serviceId: adminapp
+      stripPrefix: false
+      sensitiveHeaders: 
+    flowapp:
+      path: /flowapp/**
+      serviceId: flowapp
+      stripPrefix: false
+      sensitiveHeaders: 
+security:
+  sessions: ALWAYS
+ribbon:  
+  ReadTimeout: 60000  
+  ConnectTimeout: 60000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 60000

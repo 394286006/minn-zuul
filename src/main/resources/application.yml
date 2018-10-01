@@ -56,6 +56,11 @@ zuul:
       serviceId: flowapp
       stripPrefix: false
       sensitiveHeaders: 
+    dubboapp:
+      path: /dubboapp/**
+      serviceId: dubboapp
+      stripPrefix: false
+      sensitiveHeaders: 
 security:
   sessions: ALWAYS
 ribbon:  
